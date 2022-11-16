@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
             'remember_token' => Str::random(10)
         ]);
-        User::factory(2)->create();
+        User::factory(3)->create();
 
         Category::create([
             'name' => 'Web Programming',
