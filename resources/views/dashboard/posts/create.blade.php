@@ -63,6 +63,7 @@
                 <trix-editor input="body"></trix-editor>
             </div>
             
+            <a href="/dashboard/posts" class="btn btn-secondary" role="button">Back</a>
             <button type="submit" class="btn btn-dark">Create Post</button>
         </form>
     </div>

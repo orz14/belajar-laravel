@@ -72,10 +72,14 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('dashboard.posts.show', [
-            'title' => 'Post: ' . $post->title,
-            'post' => $post
-        ]);
+        if($post->user_id === auth()->user()->id) {
+            return view('dashboard.posts.show', [
+                'title' => 'Post: ' . $post->title,
+                'post' => $post
+            ]);
+        } else {
+            return redirect('/dashboard/posts');
+        }
     }
 
     /**
@@ -86,11 +90,15 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', [
-            'title' => 'Edit Post',
-            'post' => $post,
-            'categories' => Category::all()
-        ]);
+        if($post->user_id === auth()->user()->id) {
+            return view('dashboard.posts.edit', [
+                'title' => 'Edit Post',
+                'post' => $post,
+                'categories' => Category::all()
+            ]);
+        } else {
+            return redirect('/dashboard/posts');
+        }
     }
 
     /**
@@ -135,13 +143,17 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if($post->image) {
-            Storage::delete($post->image);
+        if($post->user_id === auth()->user()->id) {
+            if($post->image) {
+                Storage::delete($post->image);
+            }
+    
+            Post::destroy($post->id);
+    
+            return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
+        } else {
+            return redirect('/dashboard/posts');
         }
-
-        Post::destroy($post->id);
-
-        return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
     }
 
     public function checkSlug(Request $request)

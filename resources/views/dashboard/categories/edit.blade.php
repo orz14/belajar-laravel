@@ -5,7 +5,7 @@
         <h1 class="h2">Edit Category</h1>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-6">
         <form action="/dashboard/categories/{{ $category->slug }}" method="POST" class="mb-5">
             @method('put')
             @csrf
@@ -29,6 +29,7 @@
                 @enderror
             </div>
             
+            <a href="/dashboard/categories" class="btn btn-secondary" role="button">Back</a>
             <button type="submit" class="btn btn-dark">Update Category</button>
         </form>
     </div>

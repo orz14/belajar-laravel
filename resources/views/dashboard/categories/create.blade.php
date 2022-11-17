@@ -28,6 +28,7 @@
                 @enderror
             </div>
             
+            <a href="/dashboard/categories" class="btn btn-secondary" role="button">Back</a>
             <button type="submit" class="btn btn-dark">Create Category</button>
         </form>
     </div>
