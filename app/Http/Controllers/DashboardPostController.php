@@ -20,7 +20,8 @@ class DashboardPostController extends Controller
     public function index()
     {
         return view('dashboard.posts.index', [
-        'posts' => Post::where('user_id', auth()->user()->id)->get()
+            'title' => 'My Posts',
+            'posts' => Post::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -32,6 +33,7 @@ class DashboardPostController extends Controller
     public function create()
     {
         return view('dashboard.posts.create', [
+            'title' => 'Create New Post',
             'categories' => Category::all()
         ]);
     }
@@ -71,6 +73,7 @@ class DashboardPostController extends Controller
     public function show(Post $post)
     {
         return view('dashboard.posts.show', [
+            'title' => 'Post: ' . $post->title,
             'post' => $post
         ]);
     }
@@ -84,6 +87,7 @@ class DashboardPostController extends Controller
     public function edit(Post $post)
     {
         return view('dashboard.posts.edit', [
+            'title' => 'Edit Post',
             'post' => $post,
             'categories' => Category::all()
         ]);

@@ -40,7 +40,9 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', function() {
-    return view('dashboard.index');
+    return view('dashboard.index', [
+        'title' => 'Dashboard'
+    ]);
 })->middleware('auth');
 
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
